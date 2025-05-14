@@ -1,8 +1,10 @@
+'use client'
 import { ArrowRight } from 'lucide-react'
 import { useQueryParams } from '../hooks/useQueryParams'
-import { offer } from '../data/ifso'
 import AdvantageSheet from './AdvantageSheet'
 import { useModal } from '../context/modal/useModal'
+import { offer } from '@/data/ifso'
+import Image from 'next/image'
 
 // Тип для ключей объекта `offer`
 type TOfferKey = keyof typeof offer
@@ -11,6 +13,8 @@ const Hero = () => {
   const { toggleModal } = useModal()
   const queryParams = useQueryParams()
   const query = queryParams.ifso as TOfferKey
+  console.log(123, query)
+
   const currentOffer = offer[query] || offer.default
 
   return (
@@ -60,10 +64,12 @@ const Hero = () => {
           <div className="relative">
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#3644b9] opacity-10 rounded-full"></div>
             <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-[#3644b9] opacity-10 rounded-full"></div>
-            <img
-              src="two movers and a car.png"
-              alt="Грузчики грузят мусор в машину"
+            <Image
               className="w-full h-auto object-cover rounded-2xl shadow-lg relative"
+              src="/two movers and a car.png"
+              width={500}
+              height={500}
+              alt="Грузчики грузят мусор в машину"
             />
           </div>
         </div>
